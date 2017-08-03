@@ -1,0 +1,7 @@
+<h1>Thanks for ordering from Jungle!</h1>
+<% @order_total = 0 %>
+<% @order.line_items.each do |line_item| %>
+  <p><%= line_item.quantity %>x <%= line_item.product.name %> - $<%= line_item.total_price %></p>
+  <% @order_total += line_item.total_price %>
+<% end %>
+<p>Total: <%= @order_total %></p>

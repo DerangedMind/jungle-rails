@@ -1,0 +1,10 @@
+Thanks for ordering from Jungle!
+--------------------------------
+<% @order_total = 0 %>
+<% @order.line_items.each do |line_item| %>
+  <%= line_item.quantity %>x - <%= line_item.product.name %> - $<%= line_item.total_price %></p>
+  <% @order_total += line_item.total_price %>
+<% end %>
+
+--------------------------------
+Total: $<%= @order_total %>
