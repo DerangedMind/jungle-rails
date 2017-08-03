@@ -3,7 +3,7 @@
   <header class="page-header">
     <h1>My Cart</h1>
   </header>
-
+  <% if cart.count > 0 %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -32,7 +32,7 @@
       </tfoot>
     </table>
   </div>
-  <% if cart.count > 0 %>
+  
     <div class="row">
       <div class="col-xs-12">
         <%= form_tag orders_path do %>
@@ -47,6 +47,13 @@
             data-currency="cad">
           </script>
         <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Cart empty</h2>
+        You haven't added anything to your cart yet! Take a look at <%= link_to 'what we have to offer!', products_path %>
       </div>
     </div>
   <% end %>
