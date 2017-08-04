@@ -29,7 +29,8 @@ user1 = User.create!({
   first_name: 'Dr.',
   last_name: 'Jekyll',
   email: 'drjekyll@madscientists.com',
-  password_digest: BCrypt::Password.create('password')
+  password_digest: BCrypt::Password.create('password'),
+  admin: false
 
 })
 
@@ -37,14 +38,24 @@ user2 = User.create!({
   first_name: 'Mr.',
   last_name: 'Hyde',
   email: 'mrhyde@madscientists.com',
-  password_digest: BCrypt::Password.create('password')
+  password_digest: BCrypt::Password.create('password'),
+  admin: false
 })
 
-user2 = User.create!({
+user3 = User.create!({
   first_name: 'Victor',
   last_name: 'Frankenstein',
   email: 'frankenstein@madscientists.com',
-  password_digest: BCrypt::Password.create('password')
+  password_digest: BCrypt::Password.create('password'),
+  admin: false
+})
+
+user4 = User.create!({
+  first_name: 'admin',
+  last_name: 'lyfe',
+  email: 'admin@couchlyfe.com',
+  password_digest: BCrypt::Password.create('password'),
+  admin: true
 })
 
 

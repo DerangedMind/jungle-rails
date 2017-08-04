@@ -4,6 +4,13 @@ class CartsController < ApplicationController
   end
 
   def add_item
+    @product = Product.find(params[:product_id])
+
+    if @product.quantity <= 0
+      raise "Can't add product if there are none in stock."
+      return false
+    end
+
     product_id = params[:product_id].to_s
 
     item = cart[product_id] || { "quantity" => 0 }

@@ -23,6 +23,14 @@
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
         </dl>
+
+        <footer class="actions">
+          <% if @product.quantity > 0 %>
+            <%= link_to add_item_cart_path(product_id: @product.id), class: 'btn btn-success', method: :put do %>
+              <%= fa_icon "shopping-cart", text: 'Add' %>
+            <% end %>
+          <% end %>
+        </footer>
       </div>
     </div>
 
@@ -33,31 +41,54 @@
 
         <% if current_user %>
           <%= form_for [@product, @review] do |f| %>
-            Rating: 
-            <%= f.select(:rating, [['1 star', 1],['2 stars', 2], ['3 stars', 3], ['4 stars', 4], ['5 stars', 5]] ) %>
-            <div class="form-group">
-              <%= f.label :description %>
-              <%= f.text_area :description, class: 'form-control' %>
-              <%= f.submit 'Submit Review', class: 'btn btn-primary' %>
+
+          <% if f.object.errors.any? %>
+            <div class="alert alert-danger">
+              <strong>The following errors prevented saving:</strong>
+              <ul>
+                <% f.object.errors.full_messages.each do |error| %>
+                  <li><%= error %></li>
+                <% end %>
+              </ul>
             </div>
           <% end %>
-        <% end %>
-        <% @product.reviews.reverse.each do |review| %>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <%= review.user.first_name %> <%= review.user.last_name %>
-              <% review.rating.times do %>
-                <span class="glyphicon glyphicon-star"></span>
-              <% end %>
-              <% (5 - review.rating).times do %>
-                <span class="glyphicon glyphicon-star-empty"></span>
-              <% end %>
-            </div>
-            <div class="panel-body">
-              <%= review.description %>
-            </div>
+          Rating: 
+          
+          <% stars_array = [] %>
+          <% 5.times do |count| 
+              count += 1
+              stars_array.push [count.to_s + " star".pluralize(count), count] 
+            end %>
+          
+          <%= f.select(:rating, stars_array ) %>
+          <div class="form-group">
+            <%= f.label :description %>
+            <%= f.text_area :description, class: 'form-control' %>
+            <%= f.submit 'Submit Review', class: 'btn btn-primary' %>
           </div>
+          <% end %>
         <% end %>
+        <% if @product.reviews.count > 0 %>
+          <% @product.reviews.reverse.each do |review| %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <%= review.user.first_name %> <%= review.user.last_name %>
+                <% review.rating.times do %>
+                  <span class="glyphicon glyphicon-star"></span>
+                <% end %>
+                <% (5 - review.rating).times do %>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                <% end %>
+              </div>
+              <div class="panel-body">
+                <%= review.description %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          There are currently no reviews for this product.
+        <% end %>
+
       </div>
     </div>
 

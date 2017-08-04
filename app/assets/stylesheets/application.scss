@@ -8,10 +8,16 @@
 
 // Global
 body {
-  padding-top: 70px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .current-user {
-  color: #777;
-  padding: 15px 0;
+  color: #999;
+  padding: 15px 15px;
+}
+
+.alert {
+  margin-top: 40px;
+  margin-bottom: 0;
 }

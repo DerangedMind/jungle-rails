@@ -10,9 +10,22 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  
+  def admin?
+    current_user && current_user.admin
+  end
+  helper_method :admin?
+
   def authorize
     redirect_to '/login' unless current_user
   end
+
+  def authorize_admin
+    flash[:error] = 'This is not the page you were looking for.'
+    redirect_to '/' unless admin?
+    false
+  end
+
 
   private
 

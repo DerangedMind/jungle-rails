@@ -10,7 +10,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to '/'
     else
-      redirect_to '/signup'
+      flash.now[:error] = "Please make sure all forms are filled and that the email address is not already in use."
+      render :new
     end
   end
 

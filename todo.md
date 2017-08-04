@@ -2,8 +2,8 @@
 
 ## Products
 
-- [ ] 'Add to cart' button on `product#show`
-- [ ] Do not allow to add to cart if sold out
+- [x] 'Add to cart' button on `product#show`
+- [x] Do not allow to add to cart if sold out
 - [x] Update pics to mad scientist toys
 
 ## Login

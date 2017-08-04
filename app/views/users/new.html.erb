@@ -1,12 +1,19 @@
 <h1>Sign up!</h1>
 
 <%= form_for :user, url: '/users' do |f| %>
-  
+  <% if @user.errors.full_messages.present? %>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+      <%= puts 'anything?' %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
   First Name: <%= f.text_field :first_name, class: 'form-control' %>
   Last Name: <%= f.text_field :last_name, class: 'form-control' %>
   Email: <%= f.text_field :email, class: 'form-control' %>
   Password: <%= f.password_field :password, class: 'form-control' %>
-
-  <%= f.submit "Submit" %>
+  <br>
+  <%= f.submit "Submit", class: 'btn btn-primary' %>
 
 <% end %>
