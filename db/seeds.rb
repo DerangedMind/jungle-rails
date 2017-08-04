@@ -21,6 +21,33 @@ end
 
 # Let's do this ...
 
+## USERS
+
+User.destroy_all
+
+user1 = User.create!({
+  first_name: 'Dr.',
+  last_name: 'Jekyll',
+  email: 'drjekyll@madscientists.com',
+  password_digest: BCrypt::Password.create('password')
+
+})
+
+user2 = User.create!({
+  first_name: 'Mr.',
+  last_name: 'Hyde',
+  email: 'mrhyde@madscientists.com',
+  password_digest: BCrypt::Password.create('password')
+})
+
+user2 = User.create!({
+  first_name: 'Victor',
+  last_name: 'Frankenstein',
+  email: 'frankenstein@madscientists.com',
+  password_digest: BCrypt::Password.create('password')
+})
+
+
 ## CATEGORIES
 
 puts "Finding or Creating Categories ..."
@@ -36,7 +63,7 @@ puts "Re-creating Products ..."
 Product.destroy_all
 
 cat1.products.create!({
-  name:  'Men\'s Classy shirt',
+  name:  'Flasks',
   description: Faker::Lovecraft.paragraph,
   image: open_asset('apparel1.jpg'),
   quantity: 10,
@@ -44,7 +71,7 @@ cat1.products.create!({
 })
 
 cat1.products.create!({
-  name:  'Women\'s Zebra pants',
+  name:  'Jars for Brains',
   description: Faker::Lovecraft.paragraph,
   image: open_asset('apparel2.jpg'),
   quantity: 18,
@@ -52,7 +79,7 @@ cat1.products.create!({
 })
 
 cat1.products.create!({
-  name:  'Hipster Hat',
+  name:  'Potions (assortment)',
   description: Faker::Lovecraft.paragraph,
   image: open_asset('apparel3.jpg'),
   quantity: 4,
@@ -60,7 +87,7 @@ cat1.products.create!({
 })
 
 cat1.products.create!({
-  name:  'Hipster Socks',
+  name:  'X-Ray Goggles',
   description: Faker::Lovecraft.paragraph,
   image: open_asset('apparel4.jpg'),
   quantity: 8,
@@ -68,7 +95,7 @@ cat1.products.create!({
 })
 
 cat1.products.create!({
-  name:  'Russian Spy Shoes',
+  name:  'Lab Coat',
   description: Faker::Lovecraft.paragraph,
   image: open_asset('apparel5.jpg'),
   quantity: 8,
@@ -76,7 +103,7 @@ cat1.products.create!({
 })
 
 cat1.products.create!({
-  name:  'Human Feet Shoes',
+  name:  'Caution: Radioactive stickers',
   description: Faker::Lovecraft.paragraph,
   image: open_asset('apparel6.jpg'),
   quantity: 82,
@@ -85,7 +112,7 @@ cat1.products.create!({
 
 
 cat2.products.create!({
-  name:  'Modern Skateboards',
+  name:  'Defibrillator Laser Gun',
   description: Faker::Lovecraft.paragraph,
   image: open_asset('electronics1.jpg'),
   quantity: 40,
@@ -93,7 +120,7 @@ cat2.products.create!({
 })
 
 cat2.products.create!({
-  name:  'Hotdog Slicer',
+  name:  'Electrical Coils',
   description: Faker::Lovecraft.paragraph,
   image: open_asset('electronics2.jpg'),
   quantity: 3,
@@ -101,7 +128,7 @@ cat2.products.create!({
 })
 
 cat2.products.create!({
-  name:  'World\'s Largest Smartwatch',
+  name:  'Oudin Coil',
   description: Faker::Lovecraft.paragraph,
   image: open_asset('electronics3.jpg'),
   quantity: 32,
@@ -109,7 +136,7 @@ cat2.products.create!({
 })
 
 cat3.products.create!({
-  name:  'Optimal Sleeping Bed',
+  name:  'Sharks',
   description: Faker::Lovecraft.paragraph,
   image: open_asset('furniture1.jpg'),
   quantity: 320,
@@ -125,12 +152,39 @@ cat3.products.create!({
 })
 
 cat3.products.create!({
-  name:  'Red Bookshelf',
+  name:  'Mr. Meeseek\'s Box',
   description: Faker::Lovecraft.paragraph,
   image: open_asset('furniture3.jpg'),
   quantity: 23,
   price: 2_483.75
 })
 
+## REVIEWS
+
+Review.destroy_all
+
+12.times do |count|
+
+  rev1 = Review.create!({
+    product_id: count,
+    user_id: 1,
+    rating: 4,
+    description: Faker::Lovecraft.paragraph
+  })
+
+  rev2 = Review.create!({
+    product_id: count,
+    user_id: 2,
+    rating: 2,
+    description: Faker::Lovecraft.paragraph
+  })
+
+  rev3 = Review.create!({
+    product_id: count,
+    user_id: 3,
+    rating: 5,
+    description: Faker::Lovecraft.paragraph
+  })
+end
 
 puts "DONE!"

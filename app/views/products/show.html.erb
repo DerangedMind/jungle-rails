@@ -26,6 +26,41 @@
       </div>
     </div>
 
+        <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <h2>Ratings</h2>
+
+        <% if current_user %>
+          <%= form_for [@product, @review] do |f| %>
+            Rating: 
+            <%= f.select(:rating, [['1 star', 1],['2 stars', 2], ['3 stars', 3], ['4 stars', 4], ['5 stars', 5]] ) %>
+            <div class="form-group">
+              <%= f.label :description %>
+              <%= f.text_area :description, class: 'form-control' %>
+              <%= f.submit 'Submit Review', class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+        <% end %>
+        <% @product.reviews.reverse.each do |review| %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <%= review.user.first_name %> <%= review.user.last_name %>
+              <% review.rating.times do %>
+                <span class="glyphicon glyphicon-star"></span>
+              <% end %>
+              <% (5 - review.rating).times do %>
+                <span class="glyphicon glyphicon-star-empty"></span>
+              <% end %>
+            </div>
+            <div class="panel-body">
+              <%= review.description %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
   </article>
 
 </section>
