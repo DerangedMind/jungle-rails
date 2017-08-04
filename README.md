@@ -4,7 +4,7 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 
 ## Screenshots
 
-![product_home](/docs/product_home.png "Product Home")
+![product_home](/docs/products_home.png "Product Home")
 
 ![defib_laser_gun](/docs/defib_laser_gun.png "Product page and reviews")
 
