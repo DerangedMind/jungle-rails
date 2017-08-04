@@ -10,6 +10,19 @@
       <h4><%= product.name %></h4>
     <% end %>
   </header>
+
+  <% review_avg = 0 %>
+  <% product.reviews.each do |review| 
+      review_avg += review.rating
+     end 
+  %>
+  <% review_avg /= product.reviews.count if product.reviews.count > 0 %>
+  <% review_avg.times do %>
+    <span class="glyphicon glyphicon-star"></span>
+  <% end %>
+  <% (5 - review_avg).times do %>
+    <span class="glyphicon glyphicon-star-empty"></span>
+  <% end %>
   <p class="description">
     <%= product.description %>
   </p>

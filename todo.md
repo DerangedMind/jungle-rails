@@ -8,9 +8,9 @@
 
 ## Login
 
-- [ ] Error messages for form
+- [x] Error messages for form
 
 ## Sign up
 
-- [ ] Error messages for form
+- [x] Error messages for form
 

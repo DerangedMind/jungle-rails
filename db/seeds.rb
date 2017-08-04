@@ -172,28 +172,30 @@ cat3.products.create!({
 
 ## REVIEWS
 
+puts "Adding Reviews ..."
+
 Review.destroy_all
 
-12.times do |count|
+13.times do |count|
 
   rev1 = Review.create!({
     product_id: count,
     user_id: 1,
-    rating: 4,
+    rating: rand(1..5) + 1,
     description: Faker::Lovecraft.paragraph
   })
 
   rev2 = Review.create!({
     product_id: count,
     user_id: 2,
-    rating: 2,
+    rating: rand(1..5) + 1,
     description: Faker::Lovecraft.paragraph
   })
 
   rev3 = Review.create!({
     product_id: count,
     user_id: 3,
-    rating: 5,
+    rating: rand(1..5) + 1,
     description: Faker::Lovecraft.paragraph
   })
 end
