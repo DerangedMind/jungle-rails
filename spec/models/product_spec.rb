@@ -14,8 +14,9 @@ RSpec.describe Product, type: :model do
         quantity: 99,
         category: @category
       )
+      @product.save
 
-      expect(@product.save!).to eq true
+      expect(@product.errors.messages).to eq({})
     end
 
     it 'should not save without a name' do
