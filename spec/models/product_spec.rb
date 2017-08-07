@@ -24,8 +24,9 @@ RSpec.describe Product, type: :model do
         quantity: 99,
         category: @category
       )
+      @product.save
 
-      expect(@product.save).to eq false
+      expect(@product.errors.messages).to eq({:name=>["can't be blank"]})
     end
 
     it 'should not save without a price' do
@@ -34,8 +35,9 @@ RSpec.describe Product, type: :model do
         quantity: 99,
         category: @category
       )
+      @product.save
 
-      expect(@product.save).to eq false
+      expect(@product.errors.messages).to eq({:price_cents=>["is not a number"], :price=>["is not a number", "can't be blank"]})
     end
 
     it 'should not save without a quantity' do
@@ -44,8 +46,9 @@ RSpec.describe Product, type: :model do
         price: 499,
         category: @category
       )
+      @product.save
 
-      expect(@product.save).to eq false
+      expect(@product.errors.messages).to eq({:quantity=>["can't be blank"]})
     end
 
     it 'should not save without a category' do
@@ -54,8 +57,9 @@ RSpec.describe Product, type: :model do
         price: 499,
         quantity: 99
       )
+      @product.save
 
-      expect(@product.save).to eq false
+      expect(@product.errors.messages).to eq({:category=>["can't be blank"]})
     end
   end
 end
